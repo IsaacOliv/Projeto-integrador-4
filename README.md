@@ -4,6 +4,8 @@ Projeto de faculdade (obrigatoriamente em java)
 
 
 tabelas -------
+
+
 CREATE TABLE carros (
 	id int primary key auto_increment,
     marca varchar(100),
