@@ -8,6 +8,7 @@ public class Carro {
 	private int anoModelo;
 	private Double valor;
 	private String descricao;
+	private String fotoCarro;
 	
 	
 	public int getId() {
@@ -51,6 +52,12 @@ public class Carro {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public String getFotoCarro() {
+		return fotoCarro;
+	}
+	public void setFotoCarro(String fotoCarro) {
+		this.fotoCarro = fotoCarro;
 	}
 	
 	

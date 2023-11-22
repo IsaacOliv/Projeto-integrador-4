@@ -51,6 +51,7 @@ public class CarroFindAndUpdate extends HttpServlet {
 		carro.setValor(valor);
 		
 		carro.setDescricao(request.getParameter("descricao"));
+		carro.setFotoCarro(request.getParameter("fotoCarro"));
 		
 		CarroDao.update(carro);
 		

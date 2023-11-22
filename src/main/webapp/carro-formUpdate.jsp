@@ -65,6 +65,13 @@
 				    <label for="exampleInputPassword1"  class="form-label">Descriçäo</label>
 				    <input value="${carro.descricao }" type="text" class="form-control" name="descricao" id="exampleInputPassword1">
 				  </div>
+				  <div class="mb-2">
+				    <label for="exampleInputPassword1"  class="form-label">Link da nova imagem</label>
+				    <input type="text" value="${carro.fotoCarro }" class="form-control" name="fotoCarro" id="exampleInputPassword1">
+				  </div>
+				   <div class="mb-2">
+				    <a href="${carro.fotoCarro }" target="_blank">Imagem antiga</a>
+				  </div>
 					<div class="mt-3">
 							
 					  <button type="submit" class="btn btn-success">Atualizar Carro</button>

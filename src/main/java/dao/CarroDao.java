@@ -18,7 +18,7 @@ public class CarroDao implements CRUD{
 	
 		public static void create(Carro carro) 
 		{
-			sql = "INSERT INTO carros VALUES (null, ?,?,?,?,?,?)";
+			sql = "INSERT INTO carros VALUES (null, ?,?,?,?,?,?,?)";
 			try {
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.setString(1, carro.getMarca());
@@ -27,6 +27,7 @@ public class CarroDao implements CRUD{
 				preparedStatement.setInt(4, carro.getAnoModelo());
 				preparedStatement.setDouble(5, carro.getValor());
 				preparedStatement.setString(6, carro.getDescricao());
+				preparedStatement.setString(7, carro.getFotoCarro());
 				
 				preparedStatement.executeUpdate();
 				System.out.println("Correct insert on database");
@@ -69,6 +70,7 @@ public class CarroDao implements CRUD{
 					carro.setAnoModelo(resultSet.getInt("anoModelo"));
 					carro.setValor(resultSet.getDouble("valor"));
 					carro.setDescricao(resultSet.getString("descricao"));
+					carro.setFotoCarro(resultSet.getString("fotoCarro"));
 					
 					carros.add(carro);
 				}
@@ -99,6 +101,7 @@ public class CarroDao implements CRUD{
 					carro.setAnoModelo(resultSet.getInt("anoModelo"));
 					carro.setValor(resultSet.getDouble("valor"));
 					carro.setDescricao(resultSet.getString("descricao"));
+					carro.setFotoCarro(resultSet.getString("fotoCarro"));
 					
 				}
 				System.out.println("--correct find by pk Carros");
@@ -112,7 +115,7 @@ public class CarroDao implements CRUD{
 		
 		public static void update(Carro carro) 
 		{
-			sql = "UPDATE carros SET marca=?, modelo=?, anoFabricacao=?, anoModelo=?, valor=?, descricao=? WHERE id =?";
+			sql = "UPDATE carros SET marca=?, modelo=?, anoFabricacao=?, anoModelo=?, valor=?, descricao=?, fotoCarro=? WHERE id =?";
 			try {
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.setString(1, carro.getMarca());
@@ -121,7 +124,8 @@ public class CarroDao implements CRUD{
 				preparedStatement.setInt(4, carro.getAnoModelo());
 				preparedStatement.setDouble(5, carro.getValor());
 				preparedStatement.setString(6, carro.getDescricao());
-				preparedStatement.setInt(7, carro.getId());
+				preparedStatement.setString(7, carro.getFotoCarro());
+				preparedStatement.setInt(8, carro.getId());
 				
 				preparedStatement.executeUpdate();
 				System.out.println("Correct update on database");
