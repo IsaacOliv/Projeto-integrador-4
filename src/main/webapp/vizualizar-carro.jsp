@@ -65,9 +65,53 @@
         <label for="exampleFormControlTextarea1" class="form-label" >Descriçäo</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" style="resize: none;" disabled>${carro.descricao }</textarea>
     </div>
+    
+    <div class="mb-3" >
     <a class="btn btn-primary mx-auto mb-3" href="${carro.fotoCarro }" target="_blank">vizualizar carro</a>
-    <button class="btn btn-success form-control mx-auto mb-3" >Reservar carro</button>
+     <button type="button" class="btn btn-primary mx-auto mb-3" data-bs-toggle="modal" data-bs-target="#modal-interesse">
+    		Reservar carro
+  	</button>
+    </div>
+    
 </div>
+
+
+
+<!-- Modal -->
+<form action="carroViewFind" method="post">
+  <input type="hidden" name="interesse" value="1">
+  <input type="hidden" name="id_carro" value="${carro.id }">
+  <div class="modal fade" id="modal-interesse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reservar carro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nome</label>
+            <input class="form-control" id="exampleFormControlInput1" name="nomeCliente">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Telefone</label>
+            <input type="number" class="form-control" id="exampleFormControlInput1" name="telefoneCliente" placeholder="Apenas numeros">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-body-tertiary text-muted fixed-bottom">

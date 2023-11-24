@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,32 +9,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CarroDao;
+import dao.interessesDao;
 import model.Carro;
 
 
-@WebServlet("/carroViewIndex")
-public class carroViewIndex extends HttpServlet {
+@WebServlet("/CarroVizualizarInteresse")
+public class CarroVizualizarInteresse extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 
-    public carroViewIndex() {
+    public CarroVizualizarInteresse() {
         super();
 
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int carroId = Integer.parseInt(request.getParameter("carroId"));
+        
+        Carro carro = interessesDao.findByPk(carroId);
 
-		List<Carro> carros = CarroDao.listaCarrosView(0);
-		
-		request.setAttribute("Carros", carros);
-		RequestDispatcher requestDispathcer = request.getRequestDispatcher("carros-lista-usuario.jsp");
-		requestDispathcer.forward(request,response);
+        request.setAttribute("carro", carro);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("carro-detalhes.jsp");
+        dispatcher.forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		doGet(request, response);
 	}
 

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Carro {
 	private int id;
 	private String marca;
@@ -9,7 +11,17 @@ public class Carro {
 	private Double valor;
 	private String descricao;
 	private String fotoCarro;
+	private int interesse;
 	
+	private List<interessesClientes> interessesClientes;
+	
+	public List<interessesClientes> getInteressesClientes() {
+        return interessesClientes;
+    }
+
+    public void setInteressesClientes(List<interessesClientes> interessesClientes) {
+        this.interessesClientes = interessesClientes;
+    }
 	
 	public int getId() {
 		return id;
@@ -58,6 +70,12 @@ public class Carro {
 	}
 	public void setFotoCarro(String fotoCarro) {
 		this.fotoCarro = fotoCarro;
+	}
+	public int getInteresse() {
+		return interesse;
+	}
+	public void setInteresse(int interesse) {
+		this.interesse = interesse;
 	}
 	
 	

@@ -46,9 +46,11 @@ public class CarroFindAndUpdate extends HttpServlet {
 		int anoFabricacao = Integer.parseInt(request.getParameter("anoFabricacao"));
 		int anoModelo = Integer.parseInt(request.getParameter("anoModelo"));
 		double valor = Double.parseDouble(request.getParameter("valor"));
+		int interesse = Integer.parseInt(request.getParameter("interesse"));
 		carro.setAnoFabricacao(anoFabricacao);
 		carro.setAnoModelo(anoModelo);
 		carro.setValor(valor);
+		carro.setInteresse(interesse);
 		
 		carro.setDescricao(request.getParameter("descricao"));
 		carro.setFotoCarro(request.getParameter("fotoCarro"));

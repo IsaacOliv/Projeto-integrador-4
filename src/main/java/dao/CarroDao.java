@@ -18,7 +18,7 @@ public class CarroDao implements CRUD{
 	
 		public static void create(Carro carro) 
 		{
-			sql = "INSERT INTO carros VALUES (null, ?,?,?,?,?,?,?)";
+			sql = "INSERT INTO carros VALUES (null, ?,?,?,?,?,?,?,?)";
 			try {
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.setString(1, carro.getMarca());
@@ -28,11 +28,12 @@ public class CarroDao implements CRUD{
 				preparedStatement.setDouble(5, carro.getValor());
 				preparedStatement.setString(6, carro.getDescricao());
 				preparedStatement.setString(7, carro.getFotoCarro());
+				preparedStatement.setInt(8, carro.getInteresse());
 				
 				preparedStatement.executeUpdate();
 				System.out.println("Correct insert on database");
 			} catch (SQLException e) {
-				System.out.println("Incorrect insert on database" + e.getMessage());
+				System.out.println("Incorrect insert on database " + e.getMessage());
 			}
 		}
 		
@@ -102,6 +103,8 @@ public class CarroDao implements CRUD{
 					carro.setValor(resultSet.getDouble("valor"));
 					carro.setDescricao(resultSet.getString("descricao"));
 					carro.setFotoCarro(resultSet.getString("fotoCarro"));
+					carro.setInteresse(resultSet.getInt("interesse"));
+					
 					
 				}
 				System.out.println("--correct find by pk Carros");
@@ -115,7 +118,7 @@ public class CarroDao implements CRUD{
 		
 		public static void update(Carro carro) 
 		{
-			sql = "UPDATE carros SET marca=?, modelo=?, anoFabricacao=?, anoModelo=?, valor=?, descricao=?, fotoCarro=? WHERE id =?";
+			sql = "UPDATE carros SET marca=?, modelo=?, anoFabricacao=?, anoModelo=?, valor=?, descricao=?, fotoCarro=?, interesse=? WHERE id =?";
 			try {
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.setString(1, carro.getMarca());
@@ -125,7 +128,93 @@ public class CarroDao implements CRUD{
 				preparedStatement.setDouble(5, carro.getValor());
 				preparedStatement.setString(6, carro.getDescricao());
 				preparedStatement.setString(7, carro.getFotoCarro());
-				preparedStatement.setInt(8, carro.getId());
+				preparedStatement.setInt(8, carro.getInteresse());
+				preparedStatement.setInt(9, carro.getId());
+				
+				preparedStatement.executeUpdate();
+				System.out.println("Correct update on database");
+			} catch (SQLException e) {
+				System.out.println("Incorrect update on database" + e.getMessage());
+			}
+		}
+
+		public static List<Carro> findByInteresse(int interesse) 
+		{
+			List<Carro> carros = new ArrayList<>();
+			sql = String.format("SELECT * FROM carros WHERE interesse = %d", interesse);
+			
+			try (Statement statement = connection.createStatement();
+			    ResultSet resultSet = statement.executeQuery(sql)) 
+			{
+				
+				while (resultSet.next()) {
+					Carro carro = new Carro();
+					
+					carro.setId(resultSet.getInt("id"));
+					carro.setMarca(resultSet.getString("marca"));
+					carro.setModelo(resultSet.getString("modelo"));
+					carro.setAnoFabricacao(resultSet.getInt("anoFabricacao"));
+					carro.setAnoModelo(resultSet.getInt("anoModelo"));
+					carro.setValor(resultSet.getDouble("valor"));
+					carro.setDescricao(resultSet.getString("descricao"));
+					carro.setFotoCarro(resultSet.getString("fotoCarro"));
+					carro.setInteresse(resultSet.getInt("interesse"));
+					
+					carros.add(carro);
+					
+				}
+				System.out.println("--correct find by pk Carros");
+				System.out.println("Número de carros encontrados: " + carros.size());
+				return carros;
+			} catch (SQLException e) {
+				System.out.println("Incorrect find by pk Carros" +  e.getMessage());
+				return null;
+			}
+			
+		}
+		
+		public static List<Carro> listaCarrosView(int interesse) 
+		{
+			List<Carro> carros = new ArrayList<>();
+			sql = String.format("SELECT * FROM carros WHERE interesse = %d", interesse);
+			
+			try (Statement statement = connection.createStatement();
+			    ResultSet resultSet = statement.executeQuery(sql)) 
+			{
+				
+				while (resultSet.next()) {
+					Carro carro = new Carro();
+					
+					carro.setId(resultSet.getInt("id"));
+					carro.setMarca(resultSet.getString("marca"));
+					carro.setModelo(resultSet.getString("modelo"));
+					carro.setAnoFabricacao(resultSet.getInt("anoFabricacao"));
+					carro.setAnoModelo(resultSet.getInt("anoModelo"));
+					carro.setValor(resultSet.getDouble("valor"));
+					carro.setDescricao(resultSet.getString("descricao"));
+					carro.setFotoCarro(resultSet.getString("fotoCarro"));
+					carro.setInteresse(resultSet.getInt("interesse"));
+					
+					carros.add(carro);
+					
+				}
+				System.out.println("--correct find by pk Carros");
+				System.out.println("Número de carros encontrados: " + carros.size());
+				return carros;
+			} catch (SQLException e) {
+				System.out.println("Incorrect find by pk Carros" +  e.getMessage());
+				return null;
+			}
+			
+		}
+		
+		public static void interesseUpdate(Carro carro) 
+		{
+			sql = "UPDATE carros SET interesse=? WHERE id =?";
+			try {
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setInt(1, carro.getInteresse());
+				preparedStatement.setInt(2, carro.getId());
 				
 				preparedStatement.executeUpdate();
 				System.out.println("Correct update on database");

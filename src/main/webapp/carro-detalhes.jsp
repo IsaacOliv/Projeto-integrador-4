@@ -43,31 +43,31 @@
 				<input type="hidden" name="id" value="${ carro.id }">
 				  <div class="mb-2">
 				    <label for="exampleInputEmail1"class="form-label">Marca</label>
-				    <input value="${carro.marca }" type="text" class="form-control" name="marca"  id="exampleInputEmail1" aria-describedby="emailHelp">
+				    <input value="${carro.marca }" type="text" class="form-control" name="marca"  id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
 				  </div>
 				  <div class="mb-2">
 				    <label for="exampleInputPassword1" class="form-label">Modelo</label>
-				    <input value="${carro.modelo }" type="text" class="form-control" name="modelo"  id="exampleInputPassword1">
+				    <input value="${carro.modelo }" type="text" class="form-control" name="modelo"  id="exampleInputPassword1" disabled>
 				  </div>
 				  <div class="mb-2">
 				    <label for="exampleInputPassword1"  class="form-label">Ano de fabricaçäo</label>
-				    <input value="${carro.anoFabricacao }" type="number" maxlength="4" class="form-control" name="anoFabricacao" id="exampleInputPassword1">
+				    <input value="${carro.anoFabricacao }" type="number" maxlength="4" class="form-control" name="anoFabricacao" id="exampleInputPassword1" disabled>
 				  </div>
 				  <div class="mb-2">
 				    <label for="exampleInputPassword1"  class="form-label">Ano do modelo</label>
-				    <input value="${carro.anoModelo }" type="number" maxlength="4" class="form-control" name="anoModelo" id="exampleInputPassword1">
+				    <input value="${carro.anoModelo }" type="number" maxlength="4" class="form-control" name="anoModelo" id="exampleInputPassword1" disabled>
 				  </div>
 				  <div class="mb-2">
 				    <label for="exampleInputPassword1"  class="form-label">Valor</label>
-				    <input value="${carro.valor }" type="number" class="form-control" name="valor" id="exampleInputPassword1">
+				    <input value="${carro.valor }" type="number" class="form-control" name="valor" id="exampleInputPassword1" disabled>
 				  </div>
 				  <div class="mb-2">
 				    <label for="exampleInputPassword1"  class="form-label">Descriçäo</label>
-				    <input value="${carro.descricao }" type="text" class="form-control" name="descricao" id="exampleInputPassword1">
+				    <input value="${carro.descricao }" type="text" class="form-control" name="descricao" id="exampleInputPassword1" disabled>
 				  </div>
 				  <div class="mb-2">
 				    <label for="exampleInputPassword1"  class="form-label">Link da nova imagem</label>
-				    <input type="text" value="${carro.fotoCarro }" class="form-control" name="fotoCarro" id="exampleInputPassword1">
+				    <input type="text" value="${carro.fotoCarro }" class="form-control" name="fotoCarro" id="exampleInputPassword1" disabled>
 				  </div>
 				   <div class="mb-2">
 				    <a href="${carro.fotoCarro }" target="_blank">Imagem antiga</a>
@@ -92,12 +92,65 @@
 					<div class="mt-3">
 							
 					  <button type="submit" class="btn btn-success">Atualizar Carro</button>
-					  <button type="reset" class="btn btn-secondary">Limpar Formulario</button>
+					  
+					  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-interesse">
+					    Ver cliente interessado 
+					  </button>
+					  
 					</div>
 				</form>
 			</div>		
 		</div>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+
+
+<!-- Modal -->
+  <div class="modal fade" id="modal-interesse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cliente interessado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <c:forEach var="interesseCliente" items="${carro.interessesClientes}">
+                    <div class="mb-3">
+	            <label for="exampleFormControlInput1" class="form-label">Nome</label>
+	            <input class="form-control" id="exampleFormControlInput1" value="${interesseCliente.nomeCliente}" name="nomeCliente" disabled>
+	          </div>
+	          <div class="mb-3">
+	            <label for="exampleFormControlInput1" class="form-label">Telefone</label>
+	            <input class="form-control" id="exampleFormControlInput1" name="telefoneCliente" value="${interesseCliente.telefoneCliente}" disabled>
+	          </div>
+         </c:forEach>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

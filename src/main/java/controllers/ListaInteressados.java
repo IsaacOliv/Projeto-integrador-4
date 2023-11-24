@@ -14,28 +14,29 @@ import dao.CarroDao;
 import model.Carro;
 
 
-@WebServlet("/carroViewIndex")
-public class carroViewIndex extends HttpServlet {
+@WebServlet("/lista-carros-interessados")
+public class ListaInteressados extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public carroViewIndex() {
+       
+ 
+    public ListaInteressados() {
         super();
-
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<Carro> carros = CarroDao.listaCarrosView(0);
-		
-		request.setAttribute("Carros", carros);
-		RequestDispatcher requestDispathcer = request.getRequestDispatcher("carros-lista-usuario.jsp");
-		requestDispathcer.forward(request,response);
+		List<Carro> carros = CarroDao.findByInteresse(1);
+	    
+	    request.setAttribute("carros", carros);
+	    
+	    
+	    RequestDispatcher requestDispatcher = request.getRequestDispatcher("lista-carros-interessados.jsp");
+	    requestDispatcher.forward(request, response);
 	}
 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		doGet(request, response);
 	}
 

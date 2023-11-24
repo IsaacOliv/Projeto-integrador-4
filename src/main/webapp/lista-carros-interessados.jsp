@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<title>Lista de carros</title>
+<title>Lista de carros - interesados</title>
 </head>
 <body>
 
@@ -41,7 +41,7 @@
 		<div class="row">
 			<div class="col-md-7">
 				<hr>
-				<h3>Carros cadastrados</h3>
+				<h3>Carros interessados</h3>
 				<hr>
 				<table class="table">
 				  <thead>
@@ -58,7 +58,7 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-					  <c:forEach items="${Carros}" var="carro">
+					  <c:forEach items="${carros}" var="carro">
 					    <tr>
 					      <th scope="col">${carro.id}</th>
 					      <td>${carro.marca}</td>
@@ -69,8 +69,7 @@
 					      <td>${carro.descricao}</td>
 					      <td>
 						      <div class="row">
-						      	<a class="btn btn-danger" href="CarroDelete?carroId=${ carro.id }">Deletar</a>
-						      	<a class="btn btn-primary mt-2" href="CarroUpdate?carroId=${ carro.id }">Editar</a>
+						      	<a class="btn btn-primary mt-2" href="CarroVizualizarInteresse?carroId=${ carro.id }">Vizualizar</a>
 						      </div>					 
 					      </td>
 					    </tr>
